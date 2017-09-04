@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Route, withRouter, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import TallyHome from '../tally/components/tally-home';
+import SignUp from '../users/components/signup';
+import Login from '../users/components/login';
 
 
 class MainRoute extends Component {
@@ -9,6 +11,8 @@ class MainRoute extends Component {
       <div>
         <Route exact path="/" component={TallyHome} />
         <Route exact path="/tally-home" component={TallyHome} />
+        <Route exact path="/users/signup" component={SignUp} />
+        <Route exact path="/users/login" component={Login} />
       </div>
     )
   }

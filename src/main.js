@@ -8,6 +8,8 @@ class Main extends Component {
     return (
       <div>
         <ul>
+            <li><Link to="/users/signup">SignUp</Link></li>
+            <li><Link to="/users/login">Login</Link></li>
             <li><Link to="/tally-home">Tally Home</Link></li>
         </ul>
 
