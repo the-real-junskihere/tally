@@ -45,6 +45,8 @@ class Login extends Component {
 
 export default connect((state) => {
   return {
-    user: state.usersReducer.user,
+    auth: state.authReducers.auth,
+    signedIn: state.authReducers.signedIn,
+    error: state.authReducers.error,
   };
 })(Login);

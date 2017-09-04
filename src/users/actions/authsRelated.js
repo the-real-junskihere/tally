@@ -1,4 +1,5 @@
 import firebase from '../../firebase';
+import { createUser } from './users';
 
 export function signup(formData) {
   return function (dispatch) {
@@ -11,8 +12,11 @@ export function signup(formData) {
           accessToken: data.refreshToken,
           uid: data.uid,
           provider: 'email',
+          singedIn: true,
         },
       });
+      formData.userId = data.uid;
+      dispatch(createUser(formData));
     }).catch((error) => {
       dispatch({
         type: 'ERROR',
@@ -28,14 +32,14 @@ export function login(formData) {
   return function (dispatch) {
     const { email, password } = formData;
     firebase.auth().signInWithEmailAndPassword(email, password).then((data) => {
-      console.log(data);
       dispatch({
-        type: 'Login',
+        type: 'LOGIN',
         payload: {
           email: data.email,
           accessToken: data.refreshToken,
           uid: data.uid,
           provider: 'email',
+          singedIn: true,
         },
       });
     }).catch((error) => {
@@ -51,7 +55,6 @@ export function login(formData) {
 
 export function setUser(user) {
   return function (dispatch) {
-    console.log('called');
     const {
       email,
       accessToken,
@@ -65,6 +68,7 @@ export function setUser(user) {
         accessToken,
         uid,
         provider,
+        signedIn: true,
       },
     });
   };
@@ -72,7 +76,6 @@ export function setUser(user) {
 
 export function checkIfAuthenticated() {
   return function (dispatch) {
-    console.log('called check');
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         dispatch({
@@ -82,11 +85,36 @@ export function checkIfAuthenticated() {
             accessToken: user.refreshToken,
             uid: user.uid,
             provider: 'email',
+            signedIn: true,
           },
         });
       } else {
         console.log('Not signeIn');
       }
+    });
+  };
+}
+
+export function logout() {
+  return function (dispatch) {
+    firebase.auth().signOut().then(() => {
+      dispatch({
+        type: 'SETUSER',
+        payload: {
+          email: null,
+          accessToken: null,
+          uid: null,
+          provider: null,
+          signedIn: false,
+        },
+      });
+    }, (error) => {
+      dispatch({
+        type: 'ERROR',
+        payload: {
+          message: error.message,
+        },
+      });
     });
   };
 }

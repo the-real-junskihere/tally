@@ -1,52 +1,26 @@
-export default function reducer(state = {
+const defaultState = {
   user: {
+    name: null,
     email: null,
-    uid: null,
-    accessToken: null,
-    provider: null,
+    profilePic: null,
   },
-  signedIn: false,
-  error: {
-    status: false,
-    message: null,
-  },
-}, action) {
-  let newUser = { ...state };
+};
 
+export default function (state = defaultState, action) {
+  const newState = { ...state };
   switch (action.type) {
-    case 'SIGNUP': {
-      newUser = {
-        user: {
-          email: action.payload.email,
-          uid: action.payload.uid,
-          accessToken: action.payload.accessToken,
-          provider: action.payload.provider,
-        },
-        signedIn: true,
+    case 'CREATEUSER': {
+      newState.user = {
+        name: action.payload.name,
+        email: action.payload.email,
+        profilePic: action.payload.profilePic,
       };
-      break;
-    }
-    case 'SETUSER': {
-      newUser = {
-        user: {
-          email: action.payload.email,
-          uid: action.payload.uid,
-          accessToken: action.payload.accessToken,
-          provider: action.payload.provider,
-        },
-        signedIn: true,
-      };
-      break;
-    }
-    case 'ERROR': {
-      newUser.error.status = true;
-      newUser.error.message = action.payload.message;
       break;
     }
     default: {
-      console.log('Fell onto default');
+      // console.log('error');
     }
   }
 
-  return newUser;
+  return newState;
 }

@@ -8,6 +8,8 @@ class SignUp extends Component {
     this.state = {
       email: null,
       password: null,
+      name: null,
+      imageUrl: null,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -32,6 +34,8 @@ class SignUp extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
+          <input type='text' name='name' id='email' onChange={this.handleInputChange} required />
+          <input type='text' name='imageUrl' id='email' onChange={this.handleInputChange} required />
           <input type='text' name='email' id='email' onChange={this.handleInputChange} required />
           <input type='password' name='password' id='password' onChange={this.handleInputChange} required />
           <button type='submit'>signup</button>
@@ -44,6 +48,8 @@ class SignUp extends Component {
 
 export default connect((state) => {
   return {
-    user: state.usersReducer.user,
+    auth: state.authReducers.auth,
+    signedIn: state.authReducers.signedIn,
+    error: state.authReducers.error,
   };
 })(SignUp);
