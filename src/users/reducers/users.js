@@ -5,7 +5,7 @@ export default function reducer(state = {
     accessToken: null,
     provider: null,
   },
-  signup: false,
+  signedIn: false,
   error: {
     status: false,
     message: null,
@@ -22,7 +22,19 @@ export default function reducer(state = {
           accessToken: action.payload.accessToken,
           provider: action.payload.provider,
         },
-        signup: true,
+        signedIn: true,
+      };
+      break;
+    }
+    case 'SETUSER': {
+      newUser = {
+        user: {
+          email: action.payload.email,
+          uid: action.payload.uid,
+          accessToken: action.payload.accessToken,
+          provider: action.payload.provider,
+        },
+        signedIn: true,
       };
       break;
     }

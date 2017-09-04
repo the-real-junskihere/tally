@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { checkIfAuthenticated } from './users/actions/authsRelated';
+
 
 import MainRoute from './routes/mainRoutes';
 
 class Main extends Component {
+
+  componentDidMount() {
+    this.props.dispatch(checkIfAuthenticated());
+  }
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
+  }
   render() {
     return (
       <div>
@@ -19,4 +30,10 @@ class Main extends Component {
   }
 }
 
-export default Main;
+export default withRouter(connect((state) => {
+  return {
+    user: state.usersReducer.user,
+    signedIn: state.usersReducer.signedIn,
+    error: state.usersReducer.error,
+  };
+})(Main));
