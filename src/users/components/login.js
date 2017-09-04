@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 class Login extends Component {
-  render () {
+  render() {
     return (
       <div>
         <form>
@@ -10,7 +10,7 @@ class Login extends Component {
           <button>login</button>
         </form>
       </div>
-    )
+    );
   }
 }
 

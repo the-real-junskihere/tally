@@ -1,0 +1,54 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
+    }
+  },
+  "plugins": [
+    "react"
+  ],
+  env: {
+    "browser": true,
+    "node": true,
+
+  },
+  "extends": "airbnb-base",
+  "rules": {
+    "no-console": 0,
+    "no-underscore-dangle": 0,
+    "no-return-assign": 0,
+    "import/extensions": 0,
+    "import/no-absolute-path": 0,
+    "import/no-unresolved": [2, { "ignore": ["^[/]"] }],
+    "react/jsx-uses-react": 2,
+    "react/jsx-uses-vars": 2,
+    "react/react-in-jsx-scope": 0,
+    "arrow-body-style": 0,
+    "func-names": 0,
+    "max-len": 0, # requires to limit no. of lines to 100 only.
+    "camelcase": 0, # require to name variable instead or _ ( site_id) to camelcase (siteId)
+    "class-methods-use-this": 0, # require to use `this` when defining a 'create' method.
+    "no-restricted-syntax": 0, # deal to you later
+    "consistent-return": 0, # required to have `return` statement for every function
+    "no-param-reassign": 0, # editing properties on params
+    "no-return-await": 0, # not allowed to return await expression
+    "default-case": 0 # expecting a default block on switch statement
+  },
+  "globals": {
+       "describe": 0, # consider describe as global, necessary for testing
+       "xdescribe": 0, # consider describe as global, necessary for testing
+       "describe.only": 0, # consider describe as global, necessary for testing
+        "it": 0, # consider describe as global, necessary for testing
+        "before": 0, # consider describe as global, necessary for testing
+        "after": 0, # consider describe as global, necessary for testing
+        "afterEach": 0, # consider describe as global, necessary for testing
+        "beforeEach": 0, # consider describe as global, necessary for testing
+        "xit": 0, # consider describe as global, necessary for testing
+        "it.only": 0, # consider describe as global, necessary for testing
+        "appClient": 0 # client app instance for end to end testing.
+    },
+
+}

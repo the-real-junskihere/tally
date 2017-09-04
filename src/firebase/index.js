@@ -1,4 +1,4 @@
-const firebase = window.firebase;
+/* global window,  */
 
-
+const { firebase } = window;
 export default firebase;

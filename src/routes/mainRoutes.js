@@ -14,7 +14,7 @@ class MainRoute extends Component {
         <Route exact path="/users/signup" component={SignUp} />
         <Route exact path="/users/login" component={Login} />
       </div>
-    )
+    );
   }
 }
 
