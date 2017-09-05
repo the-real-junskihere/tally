@@ -31,6 +31,7 @@ class Main extends Component {
             <ul>
               <li><a href='!#' onClick={this.handleLogout}>Logut</a></li>
               <li><Link to="/tally-home">Tally Home</Link></li>
+              <li><Link to="/topics/create">create Topic</Link></li>
             </ul>
           ) : (
             <ul>
