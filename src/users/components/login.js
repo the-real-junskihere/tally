@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login } from '../actions/authsRelated';
+import { login, loginWithOAUTH } from '../actions/authsRelated';
 
 class Login extends Component {
   constructor(props) {
@@ -12,6 +12,8 @@ class Login extends Component {
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleLoginWithGoogle = this.handleLoginWithGoogle.bind(this);
+    this.handleLoginWithFacebook = this.handleLoginWithFacebook.bind(this);
   }
 
   handleSubmit(e) {
@@ -28,6 +30,12 @@ class Login extends Component {
       [name]: value,
     });
   }
+  handleLoginWithGoogle() {
+    this.props.dispatch(loginWithOAUTH('google'));
+  }
+  handleLoginWithFacebook() {
+    this.props.dispatch(loginWithOAUTH('facebook'));
+  }
 
   render() {
     return (
@@ -38,6 +46,8 @@ class Login extends Component {
           <button type='submit'>login</button>
           <button type='reset'>reset</button>
         </form>
+        <button type='button' onClick={this.handleLoginWithGoogle}>Login with Google</button>
+        <button type='button' onClick={this.handleLoginWithFacebook}>Login with Facebook</button>
       </div>
     );
   }

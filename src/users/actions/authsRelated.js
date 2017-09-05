@@ -118,3 +118,35 @@ export function logout() {
     });
   };
 }
+
+export function loginWithOAUTH(provider) {
+  return function (dispatch) {
+    let setProvider;
+    if (provider === 'google') {
+      setProvider = new firebase.auth.GoogleAuthProvider();
+    } else if (provider === 'facebook') {
+      setProvider = new firebase.auth.FacebookAuthProvider();
+    }
+    firebase.auth().signInWithPopup(setProvider).then((result) => {
+      dispatch({
+        type: 'SIGNUP',
+        payload: {
+          email: result.user.email,
+          accessToken: result.user.refreshToken,
+          uid: result.user.uid,
+          provider,
+          singedIn: true,
+        },
+      });
+      const formData = {
+        userId: result.user.uid,
+        email: result.user.email,
+        imageUrl: result.user.photoURL,
+        name: result.user.displayName,
+      };
+      dispatch(createUser(formData));
+    }).catch((error) => {
+      console.log(error);
+    });
+  };
+}
