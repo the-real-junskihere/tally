@@ -30,6 +30,7 @@ class CreateTopic extends Component {
   appendInput() {
     const newInput = `answer-${this.state.inputs.length}`;
     this.setState({ inputs: this.state.inputs.concat([newInput]) });
+    this.setState({ newInput: 0 });
   }
 
   render() {
@@ -37,7 +38,7 @@ class CreateTopic extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <input type='text' name='title' id='title' onChange={this.handleInputChange} />
-          {this.state.inputs.map(input => <input type='text' key={input} name={input} />)}
+          {this.state.inputs.map(input => <input type='text' key={input} name={input} required onChange={this.handleInputChange} />)}
           <button type='button' onClick={this.appendInput}>Add Answer</button>
           <button type='submit'>Create</button>
           <button type='reset'>Reset</button>
