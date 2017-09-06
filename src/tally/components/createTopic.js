@@ -7,11 +7,11 @@ class CreateTopic extends Component {
     super(props);
     this.state = {
       title: null,
-      answer1: null,
-      answer2: null,
+      inputs: ['answer-0', 'answer-1'],
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.appendInput = this.appendInput.bind(this);
   }
   handleInputChange(event) {
     const { target } = event;
@@ -26,13 +26,19 @@ class CreateTopic extends Component {
     event.preventDefault();
     this.props.dispatch(createTopic(this.state));
   }
+
+  appendInput() {
+    const newInput = `answer-${this.state.inputs.length}`;
+    this.setState({ inputs: this.state.inputs.concat([newInput]) });
+  }
+
   render() {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
           <input type='text' name='title' id='title' onChange={this.handleInputChange} />
-          <input type='text' name='answer1' id='answer1' onChange={this.handleInputChange} />
-          <input type='text' name='answer2' id='answer2' onChange={this.handleInputChange} />
+          {this.state.inputs.map(input => <input type='text' key={input} name={input} />)}
+          <button type='button' onClick={this.appendInput}>Add Answer</button>
           <button type='submit'>Create</button>
           <button type='reset'>Reset</button>
         </form>
