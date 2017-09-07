@@ -24,24 +24,31 @@ class Main extends Component {
 
   render() {
     return (
-      <div>
-
-        {
-          this.props.signedIn ? (
-            <ul>
-              <li><a href='!#' onClick={this.handleLogout}>Logut</a></li>
-              <li><Link to="/tally-home">Tally Home</Link></li>
-              <li><Link to="/topics/create">create Topic</Link></li>
-            </ul>
-          ) : (
-            <ul>
-              <li><Link to="/users/signup">SignUp</Link></li>
-              <li><Link to="/users/login">Login</Link></li>
-            </ul>
-          )
-        }
-
-        <MainRoute />
+      <div className='container'>
+        <div className="row">
+          <nav>
+            <div className="nav-wrapper">
+              <a href="!#" className="brand-logo">Who-One</a>
+              {
+                this.props.signedIn ? (
+                  <ul className="right hide-on-med-and-down">
+                    <li><Link to="/tally-home">Tally Home</Link></li>
+                    <li><Link to="/topics/create">create Topic</Link></li>
+                    <li><a href='!#' onClick={this.handleLogout}>Logut</a></li>
+                  </ul>
+                ) : (
+                  <ul className="right hide-on-med-and-down">
+                    <li><Link to="/users/signup">SignUp</Link></li>
+                    <li><Link to="/users/login">Login</Link></li>
+                  </ul>
+                )
+              }
+            </div>
+          </nav>
+        </div>
+        <div className="row">
+          <MainRoute />
+        </div>
       </div>
     );
   }

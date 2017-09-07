@@ -9,7 +9,7 @@ import Login from '../users/components/login';
 class MainRoute extends Component {
   render() {
     return (
-      <div>
+      <div className='container'>
         <Route exact path="/" component={TallyHome} />
         <Route exact path="/tally-home" component={TallyHome} />
         <Route exact path="/topics/create" component={CreateRopic} />

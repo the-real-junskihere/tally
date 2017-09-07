@@ -15,6 +15,12 @@ class SignUp extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
+  componentDidMount() {
+    window.$(document).ready(() => {
+      window.Materialize.updateTextFields();
+    });
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     this.props.dispatch(signup(this.state));
@@ -32,12 +38,24 @@ class SignUp extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input type='text' name='name' id='email' onChange={this.handleInputChange} required />
-          <input type='text' name='imageUrl' id='email' onChange={this.handleInputChange} required />
-          <input type='text' name='email' id='email' onChange={this.handleInputChange} required />
-          <input type='password' name='password' id='password' onChange={this.handleInputChange} required />
+      <div className='row'>
+        <form className='col s12' onSubmit={this.handleSubmit}>
+          <div className="input-field">
+            <input type='text' name='name' id='email' onChange={this.handleInputChange} required />
+            <label htmlFor="name">Name</label>
+          </div>
+          <div className="input-field">
+            <input type='text' name='imageUrl' id='email' onChange={this.handleInputChange} required />
+            <label htmlFor="imageUrl">Image Url</label>
+          </div>
+          <div className="input-field">
+            <input type='text' name='email' id='email' onChange={this.handleInputChange} required />
+            <label htmlFor="email">Email</label>
+          </div>
+          <div className="input-field">
+            <input type='password' name='password' id='password' onChange={this.handleInputChange} required />
+            <label htmlFor="password">Password</label>
+          </div>
           <button type='submit'>signup</button>
           <button type='reset'>reset</button>
         </form>

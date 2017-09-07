@@ -7,21 +7,27 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     <title>Tally You Tally Me</title>
-    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-messaging.js"></script>
-    <script>
-      var config = {
-        apiKey: "AIzaSyAGIQQOtYvVW9FnnE8nOljkox0Yfn4alU0",
-        authDomain: "tally-ni-junskihere.firebaseapp.com",
-        databaseURL: "https://tally-ni-junskihere.firebaseio.com",
-        // storageBucket: "<BUCKET>.appspot.com",
-        // messagingSenderId: "<SENDER_ID>",
-      };
-      firebase.initializeApp(config);
-    </script>
+    <!-- MATERIALIZE STUFF -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+    <!-- FIREBASE STUFF -->
+      <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-database.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-messaging.js"></script>
+      <script>
+        var config = {
+          apiKey: "AIzaSyAGIQQOtYvVW9FnnE8nOljkox0Yfn4alU0",
+          authDomain: "tally-ni-junskihere.firebaseapp.com",
+          databaseURL: "https://tally-ni-junskihere.firebaseio.com",
+          // storageBucket: "<BUCKET>.appspot.com",
+          // messagingSenderId: "<SENDER_ID>",
+        };
+        firebase.initializeApp(config);
+      </script>
   </head>
   <body>
     <noscript>
