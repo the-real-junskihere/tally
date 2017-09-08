@@ -1,10 +1,24 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, withRouter, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import TallyHome from '../tally/components/tally-home';
-import CreateRopic from '../tally/components/createTopic';
+import CreateTopic from '../tally/components/createTopic';
 import SignUp from '../users/components/signup';
 import Login from '../users/components/login';
 
+
+const AuthChecker = ({ component: TargetComponent, signedIn: isAtuhenticated, ...rest }) => (
+  <Route { ...rest } render={props => (
+    isAtuhenticated ? (
+      <TargetComponent { ...props } />
+    ) : (
+      <Redirect to={{
+        pathname: '/users/login',
+        state: { form: props.location },
+      }} />
+    )
+  )} />
+);
 
 class MainRoute extends Component {
   render() {
@@ -12,12 +26,18 @@ class MainRoute extends Component {
       <div className='container'>
         <Route exact path="/" component={TallyHome} />
         <Route exact path="/tally-home" component={TallyHome} />
-        <Route exact path="/topics/create" component={CreateRopic} />
+        <Route exact path="/topics/create" component={CreateTopic} />
         <Route exact path="/users/signup" component={SignUp} />
         <Route exact path="/users/login" component={Login} />
+
+        <AuthChecker exact path="/topics/about/:id" component={CreateTopic} signedIn={this.props.signedIn} history={this.props.history} />
       </div>
     );
   }
 }
 
-export default MainRoute;
+export default withRouter(connect((state) => {
+  return {
+    signedIn: state.authReducers.signedIn,
+  };
+})(MainRoute));

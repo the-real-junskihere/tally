@@ -6,9 +6,10 @@ export function createTopic(topicData) {
     const answersOptions = inputs.map((input) => {
       return topicData[input];
     });
-
-    const topics = firebase.database().ref(`topics/${topicData.title}`);
+    const topic_id = topicData.title.split(' ').join('_'); // change all spaces with '_' for routes
+    const topics = firebase.database().ref(`topics/${topic_id}`);
     const topic = {
+      title: topicData.title,
       answersOptions,
     };
     topics.set(topic);

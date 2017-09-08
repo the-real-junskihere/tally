@@ -76,24 +76,38 @@ export function setUser(user) {
 
 export function checkIfAuthenticated() {
   return function (dispatch) {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        dispatch({
-          type: 'SETUSER',
-          payload: {
-            email: user.email,
-            accessToken: user.refreshToken,
-            uid: user.uid,
-            provider: 'email',
-            signedIn: true,
-          },
-        });
-      } else {
-        console.log('Not signeIn');
-      }
-    });
+    try {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          dispatch({
+            type: 'SETUSER',
+            payload: {
+              email: user.email,
+              accessToken: user.refreshToken,
+              uid: user.uid,
+              provider: 'email',
+              signedIn: true,
+            },
+          });
+        } else {
+          dispatch({
+            type: 'SETUSER',
+            payload: {
+              email: null,
+              accessToken: null,
+              uid: null,
+              provider: null,
+              signedIn: false,
+            },
+          });
+        }
+      });
+    } catch (e) {
+      console.log(e.message);
+    }
   };
 }
+
 
 export function logout() {
   return function (dispatch) {

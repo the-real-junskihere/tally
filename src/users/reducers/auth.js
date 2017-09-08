@@ -10,6 +10,7 @@ export default function reducer(state = {
     status: false,
     message: null,
   },
+  showLoading: true,
 }, action) {
   let newUser = { ...state };
 
@@ -27,6 +28,7 @@ export default function reducer(state = {
           status: false,
           message: null,
         },
+        showLoading: false,
       };
       break;
     }
@@ -43,6 +45,7 @@ export default function reducer(state = {
           status: false,
           message: null,
         },
+        showLoading: false,
       };
       break;
     }
@@ -59,16 +62,18 @@ export default function reducer(state = {
           status: false,
           message: null,
         },
+        showLoading: false,
       };
       break;
     }
     case 'ERROR': {
       newUser.error.status = true;
       newUser.error.message = action.payload.message;
+      newUser.showLoading = false;
       break;
     }
     default: {
-      console.log('Fell onto default');
+      console.log('AuthDefault');
     }
   }
 
