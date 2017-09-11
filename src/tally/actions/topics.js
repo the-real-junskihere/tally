@@ -15,11 +15,12 @@ export function createTopic(topicData) {
       }
       return null;
     });
-    console.log(answersResult);
+
     const topic_id = topicData.title.split(' ').join('_'); // change all spaces with '_' for routes
     const topics = firebase.database().ref(`topics/${topic_id}`);
     const topic = {
       title: topicData.title,
+      imageUrl: topicData.imageUrl,
       answersOptions,
       answersResult,
     };

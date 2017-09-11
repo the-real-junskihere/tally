@@ -50,6 +50,7 @@ class CreateTopic extends Component {
       <div>
         <form onSubmit={this.handleSubmit} name="createTopic" >
           <input type='text' name='title' id='title' onChange={this.handleInputChange} required />
+          <input type='text' name='imageUrl' id='imageUrl' onChange={this.handleInputChange} required />
           {this.state.inputs.map((input, index) => {
             if (input !== 'deleted') {
               return (<div key={input + index}>
