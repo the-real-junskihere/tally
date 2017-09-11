@@ -26,10 +26,10 @@ class MainRoute extends Component {
       <div className='container'>
         <Route exact path="/" component={TallyHome} />
         <Route exact path="/tally-home" component={TallyHome} />
-        <Route exact path="/topics/create" component={CreateTopic} />
         <Route exact path="/users/signup" component={SignUp} />
         <Route exact path="/users/login" component={Login} />
 
+        <AuthChecker exact path="/topics/create" component={CreateTopic} signedIn={this.props.signedIn} history={this.props.history} />
         <AuthChecker exact path="/topics/about/:id" component={CreateTopic} signedIn={this.props.signedIn} history={this.props.history} />
       </div>
     );

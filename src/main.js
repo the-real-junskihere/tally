@@ -25,15 +25,14 @@ class Main extends Component {
 
   render() {
     return (
-      <div className='container'>
+      <div>
         {
           this.props.showLoading ? (
-            <div className="row">
+            <div className="container">
               <h1> LOADING...... </h1>
             </div>
           ) : (
-            <div>
-              <div className="row">
+            <div className="row">
                 <nav>
                   <div className="nav-wrapper">
                     <a href="!#" className="brand-logo">Who-One</a>
@@ -54,7 +53,6 @@ class Main extends Component {
                     }
                   </div>
                 </nav>
-              </div>
               <div className="row">
                 <MainRoute />
               </div>
