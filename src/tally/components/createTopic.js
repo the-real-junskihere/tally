@@ -12,11 +12,11 @@ class CreateTopic extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.appendInput = this.appendInput.bind(this);
+    this.removeInput = this.removeInput.bind(this);
   }
   handleInputChange(event) {
     const { target } = event;
     const { value, name } = target;
-
 
     this.setState({
       [name]: value,
@@ -24,21 +24,37 @@ class CreateTopic extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    this.props.dispatch(createTopic(this.state));
+    console.log(this.state);
+    // this.props.dispatch(createTopic(this.state));
   }
 
   appendInput() {
     const newInput = `answer-${this.state.inputs.length}`;
     this.setState({ inputs: this.state.inputs.concat([newInput]) });
-    this.setState({ newInput: 0 });
+    // this.setState({ newInput: 0 });
+  }
+
+  removeInput(input) {
+    const { name } = input.target;
+    const index = name.split('-');
+    this.refs[name].style.display = 'none';
+    this.refs[name].required = false;
+    input.target.style.display = 'none';
+
+    this.state.inputs[index[1]] = `deleted-${index[1]}`;
   }
 
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <input type='text' name='title' id='title' onChange={this.handleInputChange} />
-          {this.state.inputs.map(input => <input type='text' key={input} name={input} required onChange={this.handleInputChange} />)}
+        <form onSubmit={this.handleSubmit} name="createTopic" >
+          <input type='text' name='title' id='title' onChange={this.handleInputChange} required />
+          {this.state.inputs.map((input, index) => {
+            return (<div key={input + index}>
+              <input type='text' ref={input} key={input} name={input} onChange={this.handleInputChange} required />
+              <button key={input + index} type='button' name={input} onClick={this.removeInput}>remove</button>
+            </div>);
+          })}
           <button type='button' onClick={this.appendInput}>Add Answer</button>
           <button type='submit'>Create</button>
           <button type='reset'>Reset</button>
