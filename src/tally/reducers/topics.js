@@ -23,6 +23,16 @@ export default function reducer(state = defaultState, action) {
       newState.topic = action.payload;
       break;
     }
+    case 'TOPICNOTFOUND': {
+      console.log('%c TOPIC DOES NOT EXISTS', 'font-size: 50px; color: red');
+      newState.topic = {
+        title: '',
+        imageUrl: '',
+        answersOptions: '',
+        answersResult: '',
+      };
+      break;
+    }
     default: {
       console.log('%c TOPICS DEFAULT', 'font-size: 50px');
     }
