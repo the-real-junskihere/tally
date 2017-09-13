@@ -28,6 +28,21 @@ export function createTopic(topicData) {
     topics.on('value', (data) => {
       console.log('created data', data);
     });
+    console.log('create topic', dispatch);
+  };
+}
+
+export function getTopic(topicId) {
+  return function (dispatch) {
+    const topic = firebase.database().ref(`topics/${topicId}`);
+    topic.once('value').then((snapshot) => {
+      dispatch({
+        type: 'GETTOPIC',
+        payload: snapshot.val(),
+      });
+    });
+    console.log('get topic', dispatch);
+    console.log('get topic', topicId);
   };
 }
 

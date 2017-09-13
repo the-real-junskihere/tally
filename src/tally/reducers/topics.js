@@ -19,6 +19,10 @@ export default function reducer(state = defaultState, action) {
       };
       break;
     }
+    case 'GETTOPIC': {
+      newState.topic = action.payload;
+      break;
+    }
     default: {
       console.log('%c TOPICS DEFAULT', 'font-size: 50px');
     }

@@ -3,6 +3,7 @@ import { Route, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import TallyHome from '../tally/components/tally-home';
 import CreateTopic from '../tally/components/createTopic';
+import ViewTopic from '../tally/components/viewTopic';
 import SignUp from '../users/components/signup';
 import Login from '../users/components/login';
 
@@ -30,7 +31,7 @@ class MainRoute extends Component {
         <Route exact path="/users/login" component={Login} />
 
         <AuthChecker exact path="/topics/create" component={CreateTopic} signedIn={this.props.signedIn} history={this.props.history} />
-        <AuthChecker exact path="/topics/about/:id" component={CreateTopic} signedIn={this.props.signedIn} history={this.props.history} />
+        <AuthChecker exact path="/topics/about/:id" component={ViewTopic} signedIn={this.props.signedIn} history={this.props.history} />
       </div>
     );
   }
