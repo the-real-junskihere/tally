@@ -27,6 +27,7 @@
     "react/jsx-uses-vars": 2,
     "react/react-in-jsx-scope": 0,
     "arrow-body-style": 0,
+    "linebreak-style": 0,
     "func-names": 0,
     "max-len": 0, # requires to limit no. of lines to 100 only.
     "camelcase": 0, # require to name variable instead or _ ( site_id) to camelcase (siteId)
