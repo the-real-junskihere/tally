@@ -40,7 +40,7 @@ class Main extends Component {
                       this.props.signedIn ? (
                         <ul className="right hide-on-med-and-down">
                           <li><Link to="/tally-home">Tally Home</Link></li>
-                          <li><Link to="/topics/about/tae">tae</Link></li>
+                          <li><Link to="/topics/about/taesss">tae</Link></li>
                           <li><Link to="/topics/create">create Topic</Link></li>
                           <li><a href='!#' onClick={this.handleLogout}>Logut</a></li>
                           </ul>
