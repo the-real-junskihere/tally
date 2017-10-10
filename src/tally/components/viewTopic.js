@@ -41,10 +41,10 @@ class ViewTopic extends Component {
           <img className="responsive-img" src={topic.imageUrl} alt='what?' />
           <div className='row'>
             {topic.answersOptions ?
-              topic.answersOptions.map((option) => {
-                return <p>
-                      <input name="group1" type="radio" id={option} />
-                      <label htmlFor={option}>{option}</label>
+              topic.answersOptions.map((option, id) => {
+                return <p key={id}>
+                      <input name="group1" type="radio" id={option} key={id} />
+                      <label htmlFor={option} ky={id}>{option}</label>
                   </p>;
               }) : null
             }
