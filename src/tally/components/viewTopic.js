@@ -44,7 +44,7 @@ class ViewTopic extends Component {
               topic.answersOptions.map((option) => {
                 return <p>
                       <input name="group1" type="radio" id={option} />
-                      <label for={option}>{option}</label>
+                      <label htmlFor={option}>{option}</label>
                   </p>;
               }) : null
             }
