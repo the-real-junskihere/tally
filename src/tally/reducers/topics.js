@@ -34,7 +34,8 @@ export default function reducer(state = defaultState, action) {
       break;
     }
     default: {
-      console.log('%c TOPICS DEFAULT', 'font-size: 50px');
+      // do nothing
+      // console.log('%c TOPICS DEFAULT', 'font-size: 50px');
     }
   }
 

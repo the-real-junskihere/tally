@@ -13,27 +13,43 @@ class ViewTopic extends Component {
   }
 
   componentWillMount() {
-    const topicId = this.props.match.params.id;
+    const { dispatch, match } = this.props;
+    const topicId = match.params.id;
     if (!topicId) {
       throw new Error('no topic id');
     }
-
-    this.props.dispatch(getTopic(topicId));
+    dispatch(getTopic(topicId));
   }
 
-  componentWillReceiveProps(nextprops) {
-    if (nextprops.topic.title === '') {
+  componentWillReceiveProps(nextProps) {
+    const { topic } = nextProps;
+    if (topic.title === '') {
       this.setState({ redirect: true });
     }
   }
 
   render() {
+    const { redirect } = this.state;
+    const { topic } = this.props;
     return (
       <div>
         {
-          this.state.redirect ? (<Redirect to={{ pathname: '/404' }} />) : (null)
+          redirect ? (<Redirect to={{ pathname: '/404' }} />) : (null)
         }
-        <h1>View Topic</h1>
+        <div className='container'>
+          <h1>{topic.title}</h1>
+          <img className="responsive-img" src={topic.imageUrl} alt='what?' />
+          <div className='row'>
+            {topic.answersOptions ?
+              topic.answersOptions.map((option) => {
+                return <p>
+                      <input name="group1" type="radio" id={option} />
+                      <label for={option}>{option}</label>
+                  </p>;
+              }) : null
+            }
+          </div>
+        </div>
       </div>
     );
   }

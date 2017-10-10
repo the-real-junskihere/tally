@@ -49,18 +49,18 @@ class CreateTopic extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit} name="createTopic" >
-          <input type='text' name='title' id='title' onChange={this.handleInputChange} required />
-          <input type='text' name='imageUrl' id='imageUrl' onChange={this.handleInputChange} required />
+          <input type='text' name='title' id='title' onChange={this.handleInputChange} placeholder='title' required />
+          <input type='text' name='imageUrl' id='imageUrl' onChange={this.handleInputChange} placeholder='ImageURL' required />
           {this.state.inputs.map((input, index) => {
             if (input !== 'deleted') {
               return (<div key={input + index}>
-                <input type='text' ref={input} key={input} name={input} onChange={this.handleInputChange} required />
+                <input type='text' ref={input} key={input} name={input} onChange={this.handleInputChange} placeholder='addOptions' required />
                 <button key={input + index} type='button' name={input} onClick={this.removeInput}>remove</button>
                 </div>);
             }
             return null;
           })}
-          <button type='button' onClick={this.appendInput}>Add Answer</button>
+          <button type='button' onClick={this.appendInput}>Add Options</button>
           <button type='submit'>Create</button>
           <button type='reset'>Reset</button>
         </form>

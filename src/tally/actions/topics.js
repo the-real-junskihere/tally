@@ -36,8 +36,7 @@ export function getTopic(topicId) {
   return function (dispatch) {
     const topic = firebase.database().ref(`topics/${topicId}`);
     topic.once('value').then((snapshot) => {
-      const data = snapshot.val();
-      if (data) {
+      if (snapshot.val()) {
         dispatch({
           type: 'GETTOPIC',
           payload: snapshot.val(),
